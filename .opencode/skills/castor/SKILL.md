@@ -1,6 +1,6 @@
 ---
 name: castor
-description: Castor task runner workflow for this repository. Use for Docker lifecycle, Symfony console operations, migrations, quality checks, and any infrastructure/project operation command. Triggers - castor, docker lifecycle, start stack, stop stack, run migrations, run tests in container, prod compose, local setup, task runner, replace make, list commands.
+description: Runs and discovers project tasks via Castor for Docker lifecycle, Symfony console, Composer, tests, and quality checks. Use when the user mentions castor, task runner, dev:up, dev:down, prod compose, containerized PHP, migrations in Docker, or replacing make with project tasks.
 license: MIT
 metadata:
   author: Symfony Web Template
@@ -13,10 +13,10 @@ This repository uses Castor as the single task runner for local and production-l
 
 ## Rules
 
-- Use `castor` commands instead of `make`.
-- Keep using Dockerized PHP/Composer/console operations.
-- Prefer `dev:*` tasks for local development.
-- Use `prod:*` tasks only for production-like compose operations.
+- Prefer `castor` over ad hoc `docker compose` / host PHP when a task exists.
+- Use `dev:*` for local development (`compose.yaml` + `compose.override.yaml`).
+- Use `prod:*` only for production-like compose (`compose.yaml` + `compose.prod.yaml`).
+- For the catalog of this repo’s tasks, run `castor list`, `castor list dev`, or `castor list prod`.
 
 ## Quick start
 
@@ -26,16 +26,6 @@ castor dev:bootstrap
 castor dev:up
 ```
 
-## Core command groups
+## When adding or debugging Castor tasks
 
-- **Dev lifecycle:** `dev:up`, `dev:down`, `dev:restart`, `dev:ps`, `dev:logs`
-- **Dev app ops:** `dev:console`, `dev:messenger-consume`
-- **Quality:** `dev:test`, `dev:phpstan`, `dev:cs-fix`, `dev:quality`
-- **Console examples:** `dev:console "doctrine:migrations:migrate --no-interaction"`, `dev:console "tailwind:build --watch"`
-- **Prod-like lifecycle:** `prod:build`, `prod:up`, `prod:down`, `prod:restart`, `prod:ps`, `prod:logs`
-
-## References
-
-- **Project command guide:** [../../../docs/castor.md](../../../docs/castor.md)
-- **Command catalog:** [references/commands.md](references/commands.md)
-- **Operational workflow:** [references/workflow.md](references/workflow.md)
+Task entry points live in `castor.php`, `.castor/helpers.php`, `.castor/dev.php`, and `.castor/prod.php`. Vendored Castor docs live under `references/upstream/` (`getting-started/`, `going-further/`). For a concise index of built-in functions, attributes, and environment variables, see [references/castor-framework-reference.md](references/castor-framework-reference.md).

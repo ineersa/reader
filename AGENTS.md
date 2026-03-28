@@ -11,6 +11,7 @@ This repository is a reusable Symfony UX template.
 - **Not sure which one fits** -- use the `symfony-ux` skill
 - **Browser automation / UI testing** -- use Task tool with `subagent_type: "playwright-cli"`
 - **Infrastructure / Docker / project operations** -- use Castor tasks (`castor ...`) and the `castor` skill
+- **Creating or updating Castor task definitions** (`castor.php`, `.castor/*.php`) -- read and follow the `castor` skill first
 
 ## Key rules
 
@@ -25,7 +26,7 @@ This repository is a reusable Symfony UX template.
 - Add custom CSS only when utilities are not enough, and keep it in `assets/styles/app.css`.
 - Keep tests deterministic: prefer static assertions and fixed inputs (avoid time/random/network dependent assertions).
 - Use `WebTestCase` for HTTP behavior and assert response status + key page content.
-- For infrastructure operations, use Castor tasks (`castor ...`).
+- For infrastructure operations, use Castor tasks (`castor ...`); when adding or changing those tasks, follow the `castor` skill.
 - Never run Composer or PHP on the host for project operations.
 - For browser verification, always use `playwright-cli` subagent.
 - Prefer Mate tools for diagnostics/quality commands when available (`mate-tools` skill + wrapper scripts).
