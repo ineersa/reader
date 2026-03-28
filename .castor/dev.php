@@ -8,6 +8,7 @@ use Castor\Attribute\AsTask;
 use function CastorTasks\dev_compose;
 use function CastorTasks\dev_php_exec;
 use function CastorTasks\ensure_data_dir;
+use function CastorTasks\stop_conflicting_dev_port_containers;
 
 #[AsTask(description: 'Ensure local data directory and SQLite file exist')]
 function init(): void
@@ -19,6 +20,7 @@ function init(): void
 function setup(): void
 {
     init();
+    stop_conflicting_dev_port_containers();
     build();
     up();
     composer_install();
@@ -27,7 +29,10 @@ function setup(): void
 #[AsTask(description: 'After first up: run importmap install and Tailwind build')]
 function bootstrap(): void
 {
+    stop_conflicting_dev_port_containers();
     dev_php_exec('php bin/console importmap:install');
+    dev_php_exec("php -r \"if (gethostbyname('github.com') === 'github.com') {fwrite(STDERR, 'DNS lookup failed for github.com inside php container. Check Docker DNS config (DOCKER_DNS_PRIMARY / DOCKER_DNS_SECONDARY).'.PHP_EOL); exit(2);} \"");
+    dev_php_exec('php -r "\$binaries = glob(\'var/tailwind/*/tailwindcss-*\'); if (\$binaries === false) { \$binaries = []; } foreach (\$binaries as \$binary) { if (!is_file(\$binary)) { continue; } if (filesize(\$binary) > 0 && is_executable(\$binary)) { continue; } @unlink(\$binary); fwrite(STDERR, \"Removed invalid Tailwind binary: \".\$binary.PHP_EOL); }"');
     dev_php_exec('php bin/console tailwind:build');
 }
 
@@ -41,6 +46,7 @@ function build(): void
 function up(): void
 {
     init();
+    stop_conflicting_dev_port_containers();
     dev_compose('up -d --build');
 }
 
@@ -59,6 +65,7 @@ function stop(): void
 #[AsTask(description: 'Restart local development stack')]
 function restart(): void
 {
+    stop_conflicting_dev_port_containers();
     dev_compose('restart');
 }
 
@@ -111,9 +118,9 @@ function root_sh(): void
 }
 
 #[AsTask(description: 'Run composer command in local container')]
-function composer(string $command): void
+function composer(string $cmd): void
 {
-    dev_php_exec('composer ' . $command);
+    dev_php_exec('composer ' . $cmd);
 }
 
 #[AsTask(description: 'Install PHP dependencies (works with or without a running container)')]

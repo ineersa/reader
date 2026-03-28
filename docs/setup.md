@@ -47,9 +47,25 @@ This template runs on FrankenPHP with Symfony worker mode, built-in Mercure, and
 
 6. Open the app:
 
-   - HTTP: `http://localhost:8080`
-   - HTTPS: `https://localhost:8443`
-   - Mailpit UI: `http://localhost:8025`
+   - HTTP: `http://localhost:${HTTP_PORT:-8080}`
+   - HTTPS: `https://localhost:${HTTPS_PORT:-8443}`
+   - Mailpit UI: `http://localhost:${MAILER_UI_PORT:-8025}`
+
+Port overrides can be set in `.env.local`:
+
+```bash
+HTTP_PORT=8081
+HTTPS_PORT=8444
+MAILER_SMTP_PORT=1026
+MAILER_UI_PORT=8026
+```
+
+If `castor dev:bootstrap` fails resolving `github.com` during Tailwind binary download, set Docker DNS overrides in `.env.local`:
+
+```bash
+DOCKER_DNS_PRIMARY=1.1.1.1
+DOCKER_DNS_SECONDARY=8.8.8.8
+```
 
 ## Common local workflow
 
@@ -58,6 +74,8 @@ This template runs on FrankenPHP with Symfony worker mode, built-in Mercure, and
 - Restart: `castor dev:restart`
 - Status: `castor dev:ps`
 - Logs: `castor dev:logs`
+
+`castor dev:up`, `castor dev:setup`, and `castor dev:bootstrap` automatically stop running containers from other compose projects that already use one of these configured dev ports.
 
 ## Production-like local run
 

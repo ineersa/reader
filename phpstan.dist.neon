@@ -9,6 +9,9 @@ parameters:
     paths:
         - src/
         - tests/
+    scanFiles:
+        - .castor.stub.php
+        - .castor/helpers.php
     tmpDir: var/phpstan
     excludePaths:
         - tests/bootstrap.php

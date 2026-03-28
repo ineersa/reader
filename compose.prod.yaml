@@ -53,6 +53,9 @@ services:
       - app_net
     ports:
       - "${APP_HTTP_BIND:-127.0.0.1}:${APP_HTTP_PORT:-8080}:80"
+    dns:
+      - "${DOCKER_DNS_PRIMARY:-1.1.1.1}"
+      - "${DOCKER_DNS_SECONDARY:-8.8.8.8}"
 
 networks:
   app_net:

@@ -9,6 +9,9 @@ Your goal is to remove Doctrine completely from this template while keeping the 
 - This project uses Docker-first workflows.
 - Do not run Composer or PHP on the host.
 - Use container commands (for example through `docker compose` / `castor`).
+- Never modify skill/instruction files during cleanup. Treat these paths as read-only:
+  - `.opencode/skills/`
+  - `.agents/`
 
 ## 1) Remove Doctrine dependencies
 
@@ -75,8 +78,6 @@ Update docs to remove Doctrine-specific setup/commands:
 - `README.md`
 - `docs/setup.md`
 - `docs/castor.md`
-- `.opencode/skills/castor/references/commands.md`
-- `.cursor/skills/castor/references/commands.md`
 - any deployment or ops docs mentioning migrations/DB setup
 
 Make sure setup instructions still produce a working local app.

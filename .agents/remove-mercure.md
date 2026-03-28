@@ -9,6 +9,9 @@ Your goal is to remove Mercure completely from this template while keeping the a
 - This project uses Docker-first workflows.
 - Do not run Composer or PHP on the host.
 - Use container commands (for example through `docker compose` / `castor`).
+- Never modify skill/instruction files during cleanup. Treat these paths as read-only:
+  - `.opencode/skills/`
+  - `.agents/`
 
 ## 1) Remove Mercure dependencies
 
@@ -82,8 +85,6 @@ Update developer commands and documentation:
 - remove Mercure-specific notes from `README.md`
 - remove Mercure setup/deploy references from `docs/setup.md` and `docs/server-deployment.md`
 - remove Mercure references from `docs/castor.md`
-- remove Mercure command hints from `.opencode/skills/castor/references/commands.md`
-- remove Mercure command hints from `.cursor/skills/castor/references/commands.md`
 - remove or delete `docs/mercure.md`
 
 Ensure docs still describe a coherent template setup.

@@ -34,3 +34,23 @@ function prod_php_exec(string $command): void
 {
     prod_compose(sprintf('exec %s %s', PHP_SERVICE, $command));
 }
+
+function stop_conflicting_dev_port_containers(): void
+{
+    run(<<<'BASH'
+sh -lc 'set -eu;
+project_name="${COMPOSE_PROJECT_NAME:-$(basename "$PWD")}";
+for port in "${HTTP_PORT:-8080}" "${HTTPS_PORT:-8443}" "${MAILER_SMTP_PORT:-1025}" "${MAILER_UI_PORT:-8025}"; do
+  [ -n "$port" ] || continue;
+  for container_id in $(docker ps --filter "publish=${port}" --format "{{.ID}}"); do
+    owner="$(docker inspect --format "{{ index .Config.Labels \"com.docker.compose.project\" }}" "$container_id" 2>/dev/null || true)";
+    if [ "$owner" != "$project_name" ]; then
+      container_name="$(docker inspect --format "{{.Name}}" "$container_id" 2>/dev/null || true)";
+      container_name="${container_name#/}";
+      echo "Stopping container ${container_name:-$container_id} bound to host port ${port}";
+      docker stop "$container_id" >/dev/null;
+    fi;
+  done;
+done'
+BASH);
+}

@@ -9,6 +9,9 @@ Your goal is to remove Symfony Security completely from this template when authe
 - This project uses Docker-first workflows.
 - Do not run Composer or PHP on the host.
 - Use container commands (for example through `docker compose` / `castor`).
+- Never modify skill/instruction files during cleanup. Treat these paths as read-only:
+  - `.opencode/skills/`
+  - `.agents/`
 
 ## 1) Remove security dependencies
 
@@ -75,9 +78,7 @@ Replace with neutral behavior suitable for a public, auth-free template.
   - `docs/castor.md`
   - other docs if present
 - Remove Castor tasks that are purely auth-user helpers (if any).
-- Remove auth-related command references from:
-  - `.opencode/skills/castor/references/commands.md`
-  - `.cursor/skills/castor/references/commands.md`
+- Remove auth-related command references from `docs/castor.md` if any
 
 ## 7) Environment cleanup
 
