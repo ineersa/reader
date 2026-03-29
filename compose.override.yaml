@@ -40,16 +40,3 @@ services:
     tty: true
     extra_hosts:
       - host.docker.internal:host-gateway
-
-  mailer:
-    restart: "no"
-    image: axllent/mailpit
-    ports:
-      - "${MAILER_SMTP_PORT:-1025}:1025"
-      - "${MAILER_UI_PORT:-8025}:8025"
-    dns:
-      - "${DOCKER_DNS_PRIMARY:-1.1.1.1}"
-      - "${DOCKER_DNS_SECONDARY:-8.8.8.8}"
-    environment:
-      MP_SMTP_AUTH_ACCEPT_ANY: 1
-      MP_SMTP_AUTH_ALLOW_INSECURE: 1

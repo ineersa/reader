@@ -40,7 +40,7 @@ function stop_conflicting_dev_port_containers(): void
     run(<<<'BASH'
 sh -lc 'set -eu;
 project_name="${COMPOSE_PROJECT_NAME:-$(basename "$PWD")}";
-for port in "${HTTP_PORT:-8080}" "${HTTPS_PORT:-8443}" "${MAILER_SMTP_PORT:-1025}" "${MAILER_UI_PORT:-8025}"; do
+for port in "${HTTP_PORT:-8080}" "${HTTPS_PORT:-8443}"; do
   [ -n "$port" ] || continue;
   for container_id in $(docker ps --filter "publish=${port}" --format "{{.ID}}"); do
     owner="$(docker inspect --format "{{ index .Config.Labels \"com.docker.compose.project\" }}" "$container_id" 2>/dev/null || true)";

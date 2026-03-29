@@ -35,20 +35,14 @@ castor dev:bootstrap
 
 `castor dev:bootstrap` does not run database migrations.
 
-Ports are configurable (defaults: app `8080`, HTTPS `8443`, Mailpit UI `8025`).
-Set `HTTP_PORT`, `HTTPS_PORT`, `MAILER_SMTP_PORT`, and `MAILER_UI_PORT` in `.env.local` when needed.
+Ports are configurable (defaults: app `8080`, HTTPS `8443`).
+Set `HTTP_PORT` and `HTTPS_PORT` in `.env.local` when needed.
 If container DNS is broken (for example resolver `127.0.0.53`), set `DOCKER_DNS_PRIMARY` and `DOCKER_DNS_SECONDARY` in `.env.local`.
 
 If your project uses Doctrine migrations:
 
 ```bash
 castor dev:console "doctrine:migrations:migrate --no-interaction"
-```
-
-In another terminal:
-
-```bash
-castor dev:messenger-consume
 ```
 
 Open `http://localhost:${HTTP_PORT:-8080}`.

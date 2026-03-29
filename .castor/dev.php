@@ -16,7 +16,7 @@ function init(): void
     ensure_data_dir();
 }
 
-#[AsTask(description: 'One-shot local setup (then: castor dev:bootstrap, castor dev:messenger-consume)')]
+#[AsTask(description: 'One-shot local setup (then: castor dev:bootstrap)')]
 function setup(): void
 {
     init();
@@ -87,12 +87,6 @@ function logs_php(): void
     dev_compose('logs -f php');
 }
 
-#[AsTask(description: 'Stream Mailpit logs (local)')]
-function logs_mailer(): void
-{
-    dev_compose('logs -f mailer');
-}
-
 #[AsTask(description: 'Pull latest base images')]
 function pull(): void
 {
@@ -139,19 +133,6 @@ function composer_update(): void
 function console(string $cmd): void
 {
     dev_php_exec('php bin/console ' . $cmd);
-}
-
-#[AsTask(description: 'Run Messenger consumer for all non-failed transports')]
-function messenger_consume(): void
-{
-    dev_php_exec('php bin/console messenger:consume --all --exclude-receivers=failed -vv');
-}
-
-#[AsTask(description: 'Clear async and failed Messenger queues')]
-function messenger_clear(): void
-{
-    dev_php_exec('php bin/console dbal:run-sql "DELETE FROM messenger_messages"');
-    dev_php_exec('php bin/console messenger:failed:remove --all --no-interaction');
 }
 
 #[AsTask(description: 'Run PHPUnit tests in local container')]

@@ -33,31 +33,22 @@ This template runs on FrankenPHP with Symfony worker mode, built-in Mercure, and
    castor dev:console "doctrine:migrations:migrate --no-interaction"
    ```
 
-4. Run Messenger in another terminal:
-
-   ```bash
-   castor dev:messenger-consume
-   ```
-
-5. Optional while editing CSS/templates:
+4. Optional while editing CSS/templates:
 
    ```bash
    castor dev:console "tailwind:build --watch"
    ```
 
-6. Open the app:
+5. Open the app:
 
    - HTTP: `http://localhost:${HTTP_PORT:-8080}`
    - HTTPS: `https://localhost:${HTTPS_PORT:-8443}`
-   - Mailpit UI: `http://localhost:${MAILER_UI_PORT:-8025}`
 
 Port overrides can be set in `.env.local`:
 
 ```bash
 HTTP_PORT=8081
 HTTPS_PORT=8444
-MAILER_SMTP_PORT=1026
-MAILER_UI_PORT=8026
 ```
 
 If `castor dev:bootstrap` fails resolving `github.com` during Tailwind binary download, set Docker DNS overrides in `.env.local`:
