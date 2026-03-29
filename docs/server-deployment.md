@@ -47,5 +47,4 @@ Then publish host 443 with a local compose override.
 ## Runtime notes
 
 - `compose.prod.yaml` loads `.env.prod.local` with `env_file`.
-- Caddy reads Mercure keys via `{env.MERCURE_*}`.
 - Symfony environment is baked by `composer dump-env prod` during image build.

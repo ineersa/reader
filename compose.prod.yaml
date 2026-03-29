@@ -5,8 +5,8 @@
 # `.env.local.php` in the image via `composer dump-env prod` in the Dockerfile.
 #
 # Compose loads `.env.prod.local` via `env_file` into each service (no shell `export`). Use it for
-# Caddy `{env.MERCURE_*}` / `SERVER_NAME` and any runtime overrides; values override Symfony’s dump
-# for the same variable names. Copy `.env.prod.local.dist` → `.env.prod.local`.
+# `SERVER_NAME` and any runtime overrides; values override Symfony’s dump for the same variable names.
+# Copy `.env.prod.local.dist` → `.env.prod.local`.
 #
 # HTTP publish: default is 127.0.0.1:8080→container:80 so host nginx (or anything else) can keep
 # public 80/443. Caddy inside the container does not compete with nginx on the host. For a dedicated
@@ -31,13 +31,9 @@ x-json-logging: &json-logging
       max-size: "10m"
       max-file: "5"
 
-# Multiline Caddy config; keep in Compose (dotenv is awkward for this block).
+# Inline Caddy worker config.
 x-caddy-inline-env: &caddy-inline-env
   FRANKENPHP_CONFIG: import /etc/caddy/worker.Caddyfile
-  MERCURE_EXTRA_DIRECTIVES: |-
-    transport bolt {
-      path /data/mercure.db
-    }
 
 services:
   php:

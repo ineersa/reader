@@ -1,12 +1,11 @@
 # Development setup
 
-This template runs on FrankenPHP with Symfony worker mode, built-in Mercure, and SQLite.
+This template runs on FrankenPHP with Symfony worker mode and SQLite.
 
 ## Stack overview
 
 - PHP runtime: FrankenPHP (`dunglas/frankenphp`) with PHP 8.5
 - App mode: Symfony worker mode via `docker/frankenphp/worker.Caddyfile`
-- Realtime: Mercure hub built into FrankenPHP/Caddy
 - Database: SQLite at `data/app`
 - Compose files:
   - Base: `compose.yaml`

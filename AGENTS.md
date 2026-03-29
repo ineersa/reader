@@ -54,7 +54,7 @@ Examples:
 
 ## Docker setup
 
-- Runtime stack: FrankenPHP (PHP 8.5), Symfony worker mode, Mercure, SQLite.
+- Runtime stack: FrankenPHP (PHP 8.5), Symfony worker mode, SQLite.
 - SQLite file path: `data/app` (`DATABASE_URL=sqlite:///%kernel.project_dir%/data/app`).
 - Keep `data/.gitignore` as `*` and `!.gitignore`.
 - Dev compose: `compose.yaml` + `compose.override.yaml`.

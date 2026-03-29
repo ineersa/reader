@@ -4,12 +4,12 @@ Reusable Symfony 8 template with Docker (FrankenPHP), Castor tasks, Cursor/OpenC
 
 ## Included in this template
 
-- Docker runtime: FrankenPHP + Mercure + SQLite-ready setup.
+- Docker runtime: FrankenPHP + SQLite-ready setup.
 - Compose files: `compose.yaml`, `compose.override.yaml`, `compose.prod.yaml`.
 - Developer workflow: Castor task runner (`castor.php` + `.castor/`), VS Code wrappers, PHPStan/CS Fixer defaults.
 - Agent setup: `.cursor/skills`, `.opencode/skills`, `.opencode/agents`, `AGENTS.md`.
 - Environment templates: `.env`, `.env.dev`, `.env.test`, `.env.prod`, `.env.prod.local.dist`.
-- Generic docs: local setup, Mercure notes, and deployment guide.
+- Generic docs: local setup and deployment guide.
 
 ## Install Castor
 
@@ -98,4 +98,3 @@ rg -l '\{\{PROJECT_PATH\}\}|\{\{APP_DOMAIN\}\}' . | xargs sed -i "s#{{PROJECT_PA
 - `AGENTS.md`
 - `docs/setup.md`
 - `docs/server-deployment.md`
-- `docs/mercure.md`

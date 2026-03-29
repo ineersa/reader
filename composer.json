@@ -24,7 +24,6 @@
         "symfony/framework-bundle": "8.0.*",
         "symfony/http-client": "8.0.*",
         "symfony/intl": "8.0.*",
-        "symfony/mercure-bundle": "^0.4.2",
         "symfony/monolog-bundle": "^3.0|^4.0.1",
         "symfony/notifier": "8.0.*",
         "symfony/process": "8.0.*",

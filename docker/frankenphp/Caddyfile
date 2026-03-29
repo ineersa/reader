@@ -5,7 +5,6 @@
         {$FRANKENPHP_CONFIG}
     }
 
-    order mercure after encode
     order php_server before file_server
 }
 
@@ -13,14 +12,6 @@
     root * /app/public
 
     encode zstd br gzip
-
-    mercure {
-        publisher_jwt {env.MERCURE_PUBLISHER_JWT_KEY} {env.MERCURE_PUBLISHER_JWT_ALG}
-        subscriber_jwt {env.MERCURE_SUBSCRIBER_JWT_KEY} {env.MERCURE_SUBSCRIBER_JWT_ALG}
-        anonymous
-        subscriptions
-        {$MERCURE_EXTRA_DIRECTIVES}
-    }
 
     php_server
 }
