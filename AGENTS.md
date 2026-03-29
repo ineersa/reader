@@ -67,8 +67,8 @@ Examples:
 
 ## Template placeholders
 
-- Replace `{{PROJECT_PATH}}` in `.vscode/*.sh` wrappers.
-- Replace `{{APP_DOMAIN}}` in `.env.prod.local.dist` for production setup.
+- Replace `/home/ineersa/projects/reader` in `.vscode/*.sh` wrappers.
+- Replace `reader.ineersa.com` in `.env.prod.local.dist` for production setup.
 
 ## Suggested defaults for new features
 

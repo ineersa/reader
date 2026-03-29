@@ -75,13 +75,13 @@ Useful commands:
 
 This template intentionally uses placeholders in some files.
 
-- `{{PROJECT_PATH}}`: absolute local project path used by `.vscode/*.sh` wrappers.
-- `{{APP_DOMAIN}}`: production domain example in `.env.prod.local.dist`.
+- `/home/ineersa/projects/reader`: absolute local project path used by `.vscode/*.sh` wrappers.
+- `reader.ineersa.com`: production domain example in `.env.prod.local.dist`.
 
 Suggested replacement command:
 
 ```bash
-rg -l '\{\{PROJECT_PATH\}\}|\{\{APP_DOMAIN\}\}' . | xargs sed -i "s#{{PROJECT_PATH}}#/absolute/path/to/your/project#g; s#{{APP_DOMAIN}}#app.example.com#g"
+rg -l '\{\{PROJECT_PATH\}\}|\{\{APP_DOMAIN\}\}' . | xargs sed -i "s#{{PROJECT_PATH}}#/home/ineersa/projects/reader#g; s#{{APP_DOMAIN}}#reader.ineersa.com#g"
 ```
 
 ## Important files

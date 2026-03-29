@@ -6,7 +6,7 @@ host_gid="$(id -g)"
 
 args=()
 for arg in "$@"; do
-    arg="${arg//{{PROJECT_PATH}}/\/app}"
+    arg="${arg//\/home\/ineersa\/projects\/reader/\/app}"
     args+=("$arg")
 done
 
