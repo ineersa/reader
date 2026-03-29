@@ -56,6 +56,12 @@ function console(string $cmd): void
     prod_php_exec('php bin/console ' . $cmd);
 }
 
+#[AsTask(description: 'Reset reader rate limits (clears cache.app; production-like compose)')]
+function rate_limit_reset(): void
+{
+    prod_php_exec('php bin/console cache:pool:clear cache.app');
+}
+
 #[AsTask(description: 'Validate production compose configuration')]
 function config(): void
 {

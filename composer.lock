@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5fcb16b97b96a7845b9d969a894e0ccc",
+    "content-hash": "67c5878688cabd30c850e75f268307ff",
     "packages": [
         {
             "name": "composer/semver",
@@ -130,6 +130,54 @@
                 "source": "https://github.com/doctrine/deprecations/tree/1.1.6"
             },
             "time": "2026-02-07T07:09:04+00:00"
+        },
+        {
+            "name": "ineersa/html2markdown",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ineersa/html2markdown.git",
+                "reference": "4559b59ed306ba9736501540afc633618a060ef3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ineersa/html2markdown/zipball/4559b59ed306ba9736501540afc633618a060ef3",
+                "reference": "4559b59ed306ba9736501540afc633618a060ef3",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-libxml": "*",
+                "php": ">=8.4",
+                "symfony/string": "^7.3 || ^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.94.2",
+                "phpstan/phpstan": "^2.1.28",
+                "phpunit/phpunit": "^12.3.13"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ineersa\\Html2text\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Illia Vasylevskyi",
+                    "email": "ineersa@gmail.com"
+                }
+            ],
+            "description": "`html2markdown` converts a page of HTML into clean, easy-to-read plain ASCII text. Better yet, that ASCII also happens to be valid Markdown (a text-to-HTML format).",
+            "support": {
+                "issues": "https://github.com/ineersa/html2markdown/issues",
+                "source": "https://github.com/ineersa/html2markdown/tree/v1.0.2"
+            },
+            "time": "2026-03-29T21:47:51+00:00"
         },
         {
             "name": "monolog/monolog",

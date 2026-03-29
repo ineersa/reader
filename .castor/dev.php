@@ -126,6 +126,12 @@ function console(string $cmd): void
     dev_php_exec('php bin/console ' . $cmd);
 }
 
+#[AsTask(description: 'Reset reader rate limits (clears cache.app; see config/packages/rate_limiter.yaml)')]
+function rate_limit_reset(): void
+{
+    dev_php_exec('php bin/console cache:pool:clear cache.app');
+}
+
 #[AsTask(description: 'Run PHPUnit tests in local container')]
 function test(): void
 {

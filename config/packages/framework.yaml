@@ -4,6 +4,18 @@ framework:
 
     # Note that the session will be started ONLY if you read or write from it.
     session: true
+    http_client:
+        default_options:
+            headers:
+                User-Agent: 'Mozilla/5.0 (X11; Linux x86_64; rv:148.0) Gecko/20100101 Firefox/148.0'
+                Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,text/plain;q=0.8,*/*;q=0.7'
+                Accept-Language: 'en-US,en;q=0.9'
+                Cache-Control: 'no-cache'
+                Pragma: 'no-cache'
+            max_redirects: 10
+            timeout: '%app.reader.timeout_seconds%'
+            retry_failed:
+                max_retries: '%app.reader.max_retries%'
 
     #esi: true
     #fragments: true
