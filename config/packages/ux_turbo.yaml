@@ -1,4 +1,4 @@
-# Enable stateless CSRF protection for forms and logins/logouts
+# Enable stateless CSRF header checks for Turbo requests
 framework:
     csrf_protection:
         check_header: true
