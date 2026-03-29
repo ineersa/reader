@@ -42,8 +42,6 @@ castor --version
 
 Useful console examples:
 
-- `castor dev:console "doctrine:migrations:migrate --no-interaction"`
-- `castor dev:console "doctrine:migrations:status"`
 - `castor dev:console "tailwind:build --watch"`
 - `castor dev:console "asset-map:compile"`
 
@@ -57,10 +55,6 @@ Useful console examples:
 - `castor prod:logs`
 - `castor prod:console "about"`
 - `castor prod:config`
-
-Useful production console example:
-
-- `castor prod:console "doctrine:migrations:migrate --no-interaction"`
 
 ## Discover tasks
 

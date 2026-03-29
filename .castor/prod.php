@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace prod;
 
 use Castor\Attribute\AsTask;
-use function CastorTasks\ensure_data_dir;
 use function CastorTasks\prod_compose;
 use function CastorTasks\prod_php_exec;
 
@@ -18,7 +17,6 @@ function build(): void
 #[AsTask(description: 'Start production stack locally')]
 function up(): void
 {
-    ensure_data_dir();
     prod_compose('up -d --build');
 }
 

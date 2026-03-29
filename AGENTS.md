@@ -54,15 +54,14 @@ Examples:
 
 ## Docker setup
 
-- Runtime stack: FrankenPHP (PHP 8.5), Symfony worker mode, SQLite.
-- SQLite file path: `data/app` (`DATABASE_URL=sqlite:///%kernel.project_dir%/data/app`).
+- Runtime stack: FrankenPHP (PHP 8.5), Symfony worker mode.
 - Keep `data/.gitignore` as `*` and `!.gitignore`.
 - Dev compose: `compose.yaml` + `compose.override.yaml`.
 - Prod-like compose: `compose.yaml` + `compose.prod.yaml`.
 
 ## Castor flow
 
-- First-time setup: `castor dev:setup`, then `castor dev:bootstrap` (and `castor dev:console "doctrine:migrations:migrate --no-interaction"` if Doctrine is used).
+- First-time setup: `castor dev:setup`, then `castor dev:bootstrap`.
 - Local lifecycle: `castor dev:up`, `castor dev:down`, `castor dev:restart`, `castor dev:ps`.
 - Prod-like lifecycle: `castor prod:up`, `castor prod:down`, `castor prod:restart`, `castor prod:ps`.
 

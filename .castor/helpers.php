@@ -10,11 +10,6 @@ const DEV_COMPOSE = 'docker compose';
 const PROD_COMPOSE = 'docker compose -f compose.yaml -f compose.prod.yaml';
 const PHP_SERVICE = 'php';
 
-function ensure_data_dir(): void
-{
-    run('mkdir -p data && touch data/app');
-}
-
 function dev_compose(string $command): void
 {
     run(DEV_COMPOSE . ' ' . $command);

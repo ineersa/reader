@@ -7,19 +7,11 @@ namespace dev;
 use Castor\Attribute\AsTask;
 use function CastorTasks\dev_compose;
 use function CastorTasks\dev_php_exec;
-use function CastorTasks\ensure_data_dir;
 use function CastorTasks\stop_conflicting_dev_port_containers;
-
-#[AsTask(description: 'Ensure local data directory and SQLite file exist')]
-function init(): void
-{
-    ensure_data_dir();
-}
 
 #[AsTask(description: 'One-shot local setup (then: castor dev:bootstrap)')]
 function setup(): void
 {
-    init();
     stop_conflicting_dev_port_containers();
     build();
     up();
@@ -45,7 +37,6 @@ function build(): void
 #[AsTask(description: 'Start local development stack')]
 function up(): void
 {
-    init();
     stop_conflicting_dev_port_containers();
     dev_compose('up -d --build');
 }

@@ -1,12 +1,11 @@
 # Development setup
 
-This template runs on FrankenPHP with Symfony worker mode and SQLite.
+This template runs on FrankenPHP with Symfony worker mode.
 
 ## Stack overview
 
 - PHP runtime: FrankenPHP (`dunglas/frankenphp`) with PHP 8.5
 - App mode: Symfony worker mode via `docker/frankenphp/worker.Caddyfile`
-- Database: SQLite at `data/app`
 - Compose files:
   - Base: `compose.yaml`
   - Dev overrides: `compose.override.yaml`
@@ -26,19 +25,13 @@ This template runs on FrankenPHP with Symfony worker mode and SQLite.
    castor dev:bootstrap
    ```
 
-3. If your project uses Doctrine migrations, run:
-
-   ```bash
-   castor dev:console "doctrine:migrations:migrate --no-interaction"
-   ```
-
-4. Optional while editing CSS/templates:
+3. Optional while editing CSS/templates:
 
    ```bash
    castor dev:console "tailwind:build --watch"
    ```
 
-5. Open the app:
+4. Open the app:
 
    - HTTP: `http://localhost:${HTTP_PORT:-8080}`
    - HTTPS: `https://localhost:${HTTPS_PORT:-8443}`
@@ -79,4 +72,3 @@ Useful commands:
 - `castor prod:restart`
 - `castor prod:ps`
 - `castor prod:logs`
-- `castor prod:console "doctrine:migrations:migrate --no-interaction"`

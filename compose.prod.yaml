@@ -1,4 +1,4 @@
-# Production-like / VPS stack: FrankenPHP + SQLite volume.
+# Production-like / VPS stack with FrankenPHP and persisted app data.
 # Usage: docker compose -f compose.yaml -f compose.prod.yaml up -d --build
 #
 # Symfony: `.env` + `.env.prod` (+ optional `.env.prod.local` on the build host) are compiled into

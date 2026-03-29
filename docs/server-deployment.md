@@ -25,13 +25,7 @@ Use host nginx (or another reverse proxy) for public TLS on 443.
    castor prod:up
    ```
 
-3. Run migrations:
-
-   ```bash
-   castor prod:console "doctrine:migrations:migrate --no-interaction"
-   ```
-
-4. Configure nginx to proxy `http://127.0.0.1:${APP_HTTP_PORT:-8080}`.
+3. Configure nginx to proxy `http://127.0.0.1:${APP_HTTP_PORT:-8080}`.
 
 ## Dedicated host mode (Caddy public 80/443)
 
