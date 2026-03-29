@@ -20,8 +20,8 @@ Install dependencies from `composer.json` and `composer.lock`.
 **Example:**
 
 ```bash
-scripts/mate-tool-call.sh composer-install '{}'
-scripts/mate-tool-call.sh composer-install '{"noDev":true,"mode":"summary"}'
+mate/mate-tool-call.sh composer-install '{}'
+mate/mate-tool-call.sh composer-install '{"noDev":true,"mode":"summary"}'
 ```
 
 ---
@@ -42,8 +42,8 @@ Add a new package requirement to `composer.json`.
 **Examples:**
 
 ```bash
-scripts/mate-tool-call.sh composer-require '{"package":"symfony/console","version":"^6.4"}'
-scripts/mate-tool-call.sh composer-require '{"package":"phpunit/phpunit","dev":true}'
+mate/mate-tool-call.sh composer-require '{"package":"symfony/console","version":"^6.4"}'
+mate/mate-tool-call.sh composer-require '{"package":"phpunit/phpunit","dev":true}'
 ```
 
 ---
@@ -65,10 +65,10 @@ Update dependencies to latest versions within constraints.
 
 ```bash
 # Update all packages
-scripts/mate-tool-call.sh composer-update '{"mode":"summary"}'
+mate/mate-tool-call.sh composer-update '{"mode":"summary"}'
 
 # Update specific packages
-scripts/mate-tool-call.sh composer-update '{"packages":"symfony/console, symfony/process"}'
+mate/mate-tool-call.sh composer-update '{"packages":"symfony/console, symfony/process"}'
 ```
 
 ---
@@ -87,7 +87,7 @@ Show which packages depend on a specific package.
 **Example:**
 
 ```bash
-scripts/mate-tool-call.sh composer-why '{"package":"psr/log"}'
+mate/mate-tool-call.sh composer-why '{"package":"psr/log"}'
 ```
 
 ---
@@ -107,7 +107,7 @@ Show why a specific package version cannot be installed.
 **Example:**
 
 ```bash
-scripts/mate-tool-call.sh composer-why-not '{"package":"php","version":"7.4"}'
+mate/mate-tool-call.sh composer-why-not '{"package":"php","version":"7.4"}'
 ```
 
 ---
@@ -127,7 +127,7 @@ Remove a package from `composer.json`.
 **Example:**
 
 ```bash
-scripts/mate-tool-call.sh composer-remove '{"package":"symfony/debug-bundle","dev":true}'
+mate/mate-tool-call.sh composer-remove '{"package":"symfony/debug-bundle","dev":true}'
 ```
 
 ## Available Resources
@@ -171,18 +171,18 @@ package_count: 2
 2. **Add a new package:**
 
 ```bash
-scripts/mate-tool-call.sh composer-require '{"package":"symfony/serializer","version":"^6.4"}'
+mate/mate-tool-call.sh composer-require '{"package":"symfony/serializer","version":"^6.4"}'
 ```
 
 3. **Update after changes:**
 
 ```bash
-scripts/mate-tool-call.sh composer-install '{"optimizeAutoloader":true}'
+mate/mate-tool-call.sh composer-install '{"optimizeAutoloader":true}'
 ```
 
 4. **Investigate dependency issues:**
 
 ```bash
-scripts/mate-tool-call.sh composer-why '{"package":"symfony/console"}'
-scripts/mate-tool-call.sh composer-why-not '{"package":"symfony/console","version":"^7.0"}'
+mate/mate-tool-call.sh composer-why '{"package":"symfony/console"}'
+mate/mate-tool-call.sh composer-why-not '{"package":"symfony/console","version":"^7.0"}'
 ```

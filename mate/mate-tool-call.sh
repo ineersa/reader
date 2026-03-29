@@ -4,12 +4,12 @@ set -euo pipefail
 if [ "$#" -lt 1 ]; then
   cat <<'USAGE'
 Usage:
-  mate-tool-call.sh <tool-name> [json-input]
+  mate/mate-tool-call.sh <tool-name> [json-input]
 
 Examples:
-  mate-tool-call.sh php-version '{}'
-  mate-tool-call.sh phpstan-analyse '{"mode":"summary"}'
-  mate-tool-call.sh phpunit-run-suite '{"mode":"summary"}'
+  mate/mate-tool-call.sh php-version '{}'
+  mate/mate-tool-call.sh phpstan-analyse '{"mode":"summary"}'
+  mate/mate-tool-call.sh phpunit-run-suite '{"mode":"summary"}'
 
 Defaults:
   json-input: {}
@@ -30,13 +30,13 @@ if [ "$#" -ge 2 ]; then
 fi
 
 if [ "${MATE_TOOL_CALL_SHOW_BOOT_LOGS:-0}" = "1" ]; then
-  exec docker compose exec -T php php vendor/bin/mate mcp:tools:call \
+  exec docker compose exec -T -u "$(id -u):$(id -g)" php php vendor/bin/mate mcp:tools:call \
     "$tool_name" \
     "$json_input" \
     --format=toon
 fi
 
-exec docker compose exec -T php php vendor/bin/mate mcp:tools:call \
+exec docker compose exec -T -u "$(id -u):$(id -g)" php php vendor/bin/mate mcp:tools:call \
   "$tool_name" \
   "$json_input" \
   --format=toon \

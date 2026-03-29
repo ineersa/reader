@@ -33,26 +33,26 @@ Use Mate PHPStan tools for analysis aligned with the container runtime.
 1. Fast health check:
 
 ```bash
-scripts/mate-tool-call.sh phpstan-analyse '{"mode":"summary"}'
+mate/mate-tool-call.sh phpstan-analyse '{"mode":"summary"}'
 ```
 
 2. If failing, get grouped diagnostics:
 
 ```bash
-scripts/mate-tool-call.sh phpstan-analyse '{"mode":"by-file"}'
-scripts/mate-tool-call.sh phpstan-analyse '{"mode":"by-type"}'
+mate/mate-tool-call.sh phpstan-analyse '{"mode":"by-file"}'
+mate/mate-tool-call.sh phpstan-analyse '{"mode":"by-type"}'
 ```
 
 3. Drill into one file:
 
 ```bash
-scripts/mate-tool-call.sh phpstan-analyse-file '{"file":"src/Service/Example.php","mode":"detailed"}'
+mate/mate-tool-call.sh phpstan-analyse-file '{"file":"src/Service/Example.php","mode":"detailed"}'
 ```
 
 4. If stale cache suspected:
 
 ```bash
-scripts/mate-tool-call.sh phpstan-clear-cache '{}'
+mate/mate-tool-call.sh phpstan-clear-cache '{}'
 ```
 
 ## Parameter guidance

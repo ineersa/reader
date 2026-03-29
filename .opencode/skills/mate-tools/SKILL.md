@@ -25,7 +25,7 @@ This project runs Mate from the Docker `php` service. Tool execution should ther
 **MANDATORY**: All Mate MCP tool invocations MUST use the provided wrapper script:
 
 ```bash
-.opencode/skills/mate-tools/scripts/mate-tool-call.sh <tool-name> '<json-input>'
+mate/mate-tool-call.sh <tool-name> '<json-input>'
 ```
 
 **NEVER** call `docker compose exec ... vendor/bin/mate` directly. The wrapper ensures:
@@ -56,7 +56,7 @@ docker compose exec -T php php vendor/bin/mate mcp:tools:list --format=toon
 ### Debugging
 
 - Wrapper hides Mate bootstrap `[INFO]` lines by default by redirecting stderr.
-- To keep bootstrap logs visible: `MATE_TOOL_CALL_SHOW_BOOT_LOGS=1 .opencode/skills/mate-tools/scripts/mate-tool-call.sh ...`.
+- To keep bootstrap logs visible: `MATE_TOOL_CALL_SHOW_BOOT_LOGS=1 mate/mate-tool-call.sh ...`.
 
 ## Operating rules
 
@@ -91,20 +91,20 @@ Tool names below are the Mate MCP names used with `mcp:tools:call`.
 
 ```bash
 # Check runtime identity
-.opencode/skills/mate-tools/scripts/mate-tool-call.sh php-version '{}'
-.opencode/skills/mate-tools/scripts/mate-tool-call.sh operating-system '{}'
+mate/mate-tool-call.sh php-version '{}'
+mate/mate-tool-call.sh operating-system '{}'
 
 # Code health
-.opencode/skills/mate-tools/scripts/mate-tool-call.sh phpstan-analyse '{"mode":"summary"}'
+mate/mate-tool-call.sh phpstan-analyse '{"mode":"summary"}'
 
 # Tests
-.opencode/skills/mate-tools/scripts/mate-tool-call.sh phpunit-run-suite '{"mode":"summary"}'
+mate/mate-tool-call.sh phpunit-run-suite '{"mode":"summary"}'
 
 # Logs
-.opencode/skills/mate-tools/scripts/mate-tool-call.sh monolog-tail '{"lines":50}'
+mate/mate-tool-call.sh monolog-tail '{"lines":50}'
 
 # Symfony profiler
-.opencode/skills/mate-tools/scripts/mate-tool-call.sh symfony-profiler-latest '{}'
+mate/mate-tool-call.sh symfony-profiler-latest '{}'
 ```
 
 ## Composer Tools
@@ -113,20 +113,20 @@ Composer dependency management via `matesofmate/composer-extension`:
 
 ```bash
 # Install dependencies
-.opencode/skills/mate-tools/scripts/mate-tool-call.sh composer-install '{}'
+mate/mate-tool-call.sh composer-install '{}'
 
 # Add a new package
-.opencode/skills/mate-tools/scripts/mate-tool-call.sh composer-require '{"package":"symfony/console","version":"^6.4"}'
+mate/mate-tool-call.sh composer-require '{"package":"symfony/console","version":"^6.4"}'
 
 # Remove a package
-.opencode/skills/mate-tools/scripts/mate-tool-call.sh composer-remove '{"package":"symfony/debug-bundle","dev":true}'
+mate/mate-tool-call.sh composer-remove '{"package":"symfony/debug-bundle","dev":true}'
 
 # Update dependencies
-.opencode/skills/mate-tools/scripts/mate-tool-call.sh composer-update '{"mode":"summary"}'
+mate/mate-tool-call.sh composer-update '{"mode":"summary"}'
 
 # Investigate package dependencies
-.opencode/skills/mate-tools/scripts/mate-tool-call.sh composer-why '{"package":"psr/log"}'
-.opencode/skills/mate-tools/scripts/mate-tool-call.sh composer-why-not '{"package":"php","version":"7.4"}'
+mate/mate-tool-call.sh composer-why '{"package":"psr/log"}'
+mate/mate-tool-call.sh composer-why-not '{"package":"php","version":"7.4"}'
 ```
 
 ## References

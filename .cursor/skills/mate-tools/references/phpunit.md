@@ -41,25 +41,25 @@ Use Mate PHPUnit tools for suite, file, or single-method execution.
 1. Suite status:
 
 ```bash
-scripts/mate-tool-call.sh phpunit-run-suite '{"mode":"summary"}'
+mate/mate-tool-call.sh phpunit-run-suite '{"mode":"summary"}'
 ```
 
 2. Narrow by file:
 
 ```bash
-scripts/mate-tool-call.sh phpunit-run-file '{"file":"tests/Service/MyServiceTest.php","mode":"default"}'
+mate/mate-tool-call.sh phpunit-run-file '{"file":"tests/Service/MyServiceTest.php","mode":"default"}'
 ```
 
 3. Isolate one method:
 
 ```bash
-scripts/mate-tool-call.sh phpunit-run-method '{"class":"App\\Tests\\Service\\MyServiceTest","method":"testEdgeCase","mode":"detailed"}'
+mate/mate-tool-call.sh phpunit-run-method '{"class":"App\\Tests\\Service\\MyServiceTest","method":"testEdgeCase","mode":"detailed"}'
 ```
 
 4. Discover names first (if unknown):
 
 ```bash
-scripts/mate-tool-call.sh phpunit-list-tests '{}'
+mate/mate-tool-call.sh phpunit-list-tests '{}'
 ```
 
 ## Parameter guidance

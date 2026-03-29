@@ -109,25 +109,25 @@ Use these tools for runtime troubleshooting without leaving MCP/Mate context.
 ### Tail recent errors
 
 ```bash
-scripts/mate-tool-call.sh monolog-tail '{"lines":200,"level":"ERROR"}'
+mate/mate-tool-call.sh monolog-tail '{"lines":200,"level":"ERROR"}'
 ```
 
 ### Search for a known term
 
 ```bash
-scripts/mate-tool-call.sh monolog-search '{"term":"SQLSTATE","environment":"dev","limit":50}'
+mate/mate-tool-call.sh monolog-search '{"term":"SQLSTATE","environment":"dev","limit":50}'
 ```
 
 ### Regex for structured patterns
 
 ```bash
-scripts/mate-tool-call.sh monolog-search-regex '{"pattern":"TimeoutException|ConnectException","limit":100}'
+mate/mate-tool-call.sh monolog-search-regex '{"pattern":"TimeoutException|ConnectException","limit":100}'
 ```
 
 ### Context-driven lookup
 
 ```bash
-scripts/mate-tool-call.sh monolog-context-search '{"key":"request_id","value":"abc-123"}'
+mate/mate-tool-call.sh monolog-context-search '{"key":"request_id","value":"abc-123"}'
 ```
 
 ## Symfony profiler patterns
@@ -135,20 +135,20 @@ scripts/mate-tool-call.sh monolog-context-search '{"key":"request_id","value":"a
 ### Latest profile
 
 ```bash
-scripts/mate-tool-call.sh symfony-profiler-latest '{}'
+mate/mate-tool-call.sh symfony-profiler-latest '{}'
 ```
 
 ### List or search profiles
 
 ```bash
-scripts/mate-tool-call.sh symfony-profiler-list '{"limit":10,"method":"GET"}'
-scripts/mate-tool-call.sh symfony-profiler-search '{"route":"app_home","statusCode":500}'
+mate/mate-tool-call.sh symfony-profiler-list '{"limit":10,"method":"GET"}'
+mate/mate-tool-call.sh symfony-profiler-search '{"route":"app_home","statusCode":500}'
 ```
 
 ### Fetch full profile by token
 
 ```bash
-scripts/mate-tool-call.sh symfony-profiler-get '{"token":"<token>"}'
+mate/mate-tool-call.sh symfony-profiler-get '{"token":"<token>"}'
 ```
 
 ## Parameter guidance
