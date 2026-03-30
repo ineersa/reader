@@ -1,91 +1,68 @@
-# Symfony Web Template
+# Reader
 
-Reusable Symfony 8 template with Docker (FrankenPHP), Castor tasks, Cursor/OpenCode setup, and production-friendly defaults.
+Reader is a Symfony app that turns public web pages into clean markdown for LLM and automation workflows.
 
-## Included in this template
+It provides a browser UI and a simple raw endpoint you can call from scripts.
 
-- Docker runtime: FrankenPHP-ready setup.
-- Compose files: `compose.yaml`, `compose.override.yaml`, `compose.prod.yaml`.
-- Developer workflow: Castor task runner (`castor.php` + `.castor/`), VS Code wrappers, PHPStan/CS Fixer defaults.
-- Agent setup: `.cursor/skills`, `.opencode/skills`, `.opencode/agents`, `AGENTS.md`.
-- Environment templates: `.env`, `.env.dev`, `.env.test`, `.env.prod`, `.env.prod.local.dist`.
-- Generic docs: local setup and deployment guide.
+## What It Does
 
-## Install Castor
+- Fetches a public URL and extracts readable markdown.
+- Supports direct raw output for tool integrations.
+- Uses caching to avoid repeated expensive fetches.
+- Applies validation, SSRF protection, and per-IP rate limiting.
+- Result is returned as HTML (UI) or plain text markdown (raw endpoint).
 
-Install Castor once on your machine:
+## Demo app
+
+Demo application is hosted here - [https://reader.ineersa.com](https://reader.ineersa.com)
+
+## Endpoints
+
+- `GET /`
+    - Web UI for entering a URL and viewing markdown.
+
+- `GET /read?url=<absolute-url>`
+    - UI-oriented fetch endpoint.
+    - Returns rendered page/frame content.
+
+- `GET /r/{url}`
+    - Raw markdown endpoint.
+    - Response content type: `text/plain; charset=UTF-8`.
+    - Best for scripts, bots, and tool integrations.
+
+Examples:
+
+```bash
+curl "https://reader.ineersa.com/r/https://symfony.com/doc/current/ai/index.html"
+```
+
+## Security And Limits
+
+- URL protocols limited to `http` and `https`.
+- Internal/private network targets are blocked by Symfony `NoPrivateNetworkHttpClient`.
+- Redirects are supported and checked by the protected HTTP client.
+- Rate limiter is configured by `APP_SUBMIT_RATE_LIMIT` (10-minute sliding window).
+
+## Local Quick Start
+
+Install Castor once:
 
 ```bash
 curl "https://castor.jolicode.com/install" | bash
 ```
 
-Then verify:
-
-```bash
-castor --version
-castor list
-```
-
-## Quick start
+Run app:
 
 ```bash
 castor dev:setup
 castor dev:bootstrap
-```
-
-Ports are configurable (defaults: app `8080`, HTTPS `8443`).
-Set `HTTP_PORT` and `HTTPS_PORT` in `.env.local` when needed.
-If container DNS is broken (for example resolver `127.0.0.53`), set `DOCKER_DNS_PRIMARY` and `DOCKER_DNS_SECONDARY` in `.env.local`.
-
-Open `http://localhost:${HTTP_PORT:-8080}`.
-
-## Daily run
-
-```bash
 castor dev:up
 ```
 
-Useful lifecycle commands:
+Open `http://localhost:${HTTP_PORT:-8080}`.
 
-- `castor dev:down`
-- `castor dev:restart`
-- `castor dev:ps`
-- `castor dev:logs`
+## Documentation
 
-`castor dev:up`, `castor dev:setup`, and `castor dev:bootstrap` automatically stop running containers from other compose projects that already occupy the configured dev ports.
-
-## Production-like local run
-
-```bash
-castor prod:up
-```
-
-Useful commands:
-
-- `castor prod:down`
-- `castor prod:restart`
-- `castor prod:ps`
-- `castor prod:logs`
-
-## Command reference
-
-- `docs/castor.md`
-
-## Placeholder replacement checklist
-
-This template intentionally uses placeholders in some files.
-
-- `/home/ineersa/projects/reader`: absolute local project path used by `.vscode/*.sh` wrappers.
-- `reader.ineersa.com`: production domain example in `.env.prod.local.dist`.
-
-Suggested replacement command:
-
-```bash
-rg -l '\{\{PROJECT_PATH\}\}|\{\{APP_DOMAIN\}\}' . | xargs sed -i "s#{{PROJECT_PATH}}#/home/ineersa/projects/reader#g; s#{{APP_DOMAIN}}#reader.ineersa.com#g"
-```
-
-## Important files
-
-- `AGENTS.md`
-- `docs/setup.md`
-- `docs/server-deployment.md`
+- Local setup: [docs/setup.md](docs/setup.md)
+- Server deployment and TLS: [docs/server-deployment.md](docs/server-deployment.md)
+- Castor task reference: [docs/castor.md](docs/castor.md)
