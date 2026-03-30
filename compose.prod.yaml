@@ -37,7 +37,7 @@ x-caddy-inline-env: &caddy-inline-env
 
 services:
   php:
-    image: ${APP_IMAGE:-symfony-web-template-app}
+    image: ${APP_IMAGE:-reader-app}
     <<: [*prod-env-file, *host-gateway, *json-logging]
     environment:
       <<: *caddy-inline-env
